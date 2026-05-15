@@ -71,7 +71,7 @@ Title 2
 
 ## Language
 
-* ![Python](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) => Python
+* ![Python](https://img.shields.io/badge/python-%23E34F26.svg?style=for-the-badge&logo=python&logoColor=white) => Python
 
 ## Getting started
 
