@@ -31,8 +31,8 @@ Deadline: 5 June 2026
 ![to do](https://img.shields.io/badge/to%20do-%E2%9D%A4-f797b5?labelColor=fa6e9a&style=for-the-badge)
 ![DELAYED](https://img.shields.io/badge/DELAYED-%E2%9A%A0%EF%B8%8F-ff7a7a?labelColor=fc5151&style=for-the-badge) 
 
-### Task 1: 
-In charge : **Evie** _a.k.a_ [@cherry](https://gitlab.esiea.fr/galli)
+### Task 1: Database
+In charge : **Jade** _a.k.a_ [@dalgi](https://github.com/NightHowl1234)
 
 
 -> Status : ![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
