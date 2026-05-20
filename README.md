@@ -53,7 +53,7 @@ In charge : **Pauline** _a.k.a_ [@popo](https://github.com/PaulineSavate)
 -> Status :![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
 -> Notes :
 
-#### Task 4:
+#### Task 4: SQL
 In charge : **Evie** _a.k.a_ [@cherry](https://gitlab.esiea.fr/galli)
 
 
