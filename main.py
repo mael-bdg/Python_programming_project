@@ -1,6 +1,27 @@
 import tkinter as tk
 from tkinter import ttk
 
+import sqlite3
+import os
+
+# -----------------------------------
+# To create the db file from the sql
+# -----------------------------------
+
+def init_db():
+    db_exists = os.path.exists("movies.db")
+
+    conn = sqlite3.connect("movies.db")
+    cursor = conn.cursor()
+
+    if not db_exists:
+        with open("brouillon.sql", "r") as file:
+            cursor.executescript(file.read())
+        print("Database created!")
+
+    conn.commit()
+    conn.close()
+
 # -------------------------------
 # CLASS FOR GUI
 # -------------------------------
@@ -64,19 +85,16 @@ class MovieApp:
 
         self.result_box.insert(tk.END, f"Movies for {genre}:\n\n")
 
-        # Dummy results (you replace later with DB)
-        sample_movies = {
-            "Action": ["John Wick", "Mad Max"],
-            "Comedy": ["The Mask", "Superbad"],
-            "Drama": ["The Pursuit of Happyness"],
-            "Horror": ["The Conjuring"],
-            "Sci-Fi": ["Interstellar", "Inception"]
-        }
-
-        movies = sample_movies.get(genre, [])
+        conn = sqlite3.connect("movies.db")
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT title FROM movies WHERE genre = ?", (genre,))
+        movies = cursor.fetchall()
+        
+        conn.close()
 
         for movie in movies:
-            self.result_box.insert(tk.END, f"- {movie}\n")
+            self.result_box.insert(tk.END, f"- {movie[0]}\n")
 
 
 # -------------------------------
@@ -84,5 +102,6 @@ class MovieApp:
 # -------------------------------
 
 root = tk.Tk()
+init_db()
 app = MovieApp(root)
 root.mainloop()
