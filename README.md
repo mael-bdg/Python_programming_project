@@ -60,7 +60,7 @@ In charge : **Evie** _a.k.a_ [@cherry](https://gitlab.esiea.fr/galli)
 
 -> Status : ![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
 
--> Notes :
+-> Notes : Create link between files, add queries according to CRUD. Improve code writing 
 
 
 ## Visuals
@@ -88,8 +88,10 @@ python_programming_project/
 │ ├── file.doc
 │ └── logo.png
 │ 
-├── database.sql
-││
+├── brouillon.sql
+│ 
+├── database.py
+│
 ├── main.py
 │
 └── README.md

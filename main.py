@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from database import get_movies_by_genre
 
 import sqlite3
 import os
@@ -49,7 +50,11 @@ class MovieApp:
         self.genre_dropdown = ttk.Combobox(
             root,
             textvariable=self.genre_var,
-            values=["Action", "Comedy", "Drama", "Horror", "Sci-Fi"] # will change with respect to the database later
+            values=[
+                "Action", "Comedy", "Drama", "Horror", "Sci-Fi",
+                "Crime", "Animation", "Thriller", "Western",
+                "Fantasy", "Adventure", "War", "Biography"
+            ] # Values based on the genres available in brouillon.sql
         )
         self.genre_dropdown.pack(pady=5)
 
@@ -70,7 +75,7 @@ class MovieApp:
         self.result_box.pack(pady=10)
 
     # -------------------------------
-    # TEMPORARY, WILL CHANGE WITH RESPECT TO THE DATABASE
+    # Modified to retrieve movie titles and synopsis from the database
     # -------------------------------
     def show_movies(self):
         genre = self.genre_var.get()
@@ -83,18 +88,22 @@ class MovieApp:
             self.result_box.insert(tk.END, "Please select a genre first.")
             return
 
+        # Get movies from database.py
+        movies = get_movies_by_genre(genre)
+
+        # If no movies found
+        if not movies:
+            self.result_box.insert(tk.END, f"No movies found for {genre}.")
+            return
+
+        # Display results
         self.result_box.insert(tk.END, f"Movies for {genre}:\n\n")
 
-        conn = sqlite3.connect("movies.db")
-        cursor = conn.cursor()
-        
-        cursor.execute("SELECT title FROM movies WHERE genre = ?", (genre,))
-        movies = cursor.fetchall()
-        
-        conn.close()
-
-        for movie in movies:
-            self.result_box.insert(tk.END, f"- {movie[0]}\n")
+        # title = movie title
+        # synopsis = movie synopsis
+        for title, synopsis in movies:
+            self.result_box.insert(tk.END, f"🎬 {title}\n")
+            self.result_box.insert(tk.END, f"{synopsis}\n\n")
 
 
 # -------------------------------
