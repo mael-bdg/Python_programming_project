@@ -37,29 +37,30 @@ In charge : **Jade** _a.k.a_ [@dalgi](https://github.com/NightHowl1234)
 
 -> Status : ![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
 
--> Notes : Coded the basis of the website construction the temporary design of the website
+-> Notes : 
 
-#### Task 2: 
+#### Task 2: Recommendation System & Testing
 In charge : **Maëlys** _a.k.a_ [@grapefruit](https://github.com/mael-bdg)
 
 
 -> Status : ![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
 -> Notes : 
 
-#### Task 3: 
+#### Task 3: Graphical User Interface (GUI)
 In charge : **Pauline** _a.k.a_ [@popo](https://github.com/PaulineSavate)
 
 
--> Status :![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
+-> Status :![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
+
 -> Notes :
 
-#### Task 4: SQL
+#### Task 4: CRUD and SQL Queries
 In charge : **Evie** _a.k.a_ [@cherry](https://gitlab.esiea.fr/galli)
 
 
--> Status : ![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
+-> Status : ![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
 
--> Notes : The book presentation designs with the background change animations 
+-> Notes :
 
 
 ## Visuals
@@ -73,36 +74,30 @@ Title 2
 
 * ![Python](https://img.shields.io/badge/python-%23E34F26.svg?style=for-the-badge&logo=python&logoColor=white) => Python
 
+* mySQL badge to add => mySQL
+
 ## Getting started
 
-Open `index.html` in a web browser with live server. It will display our interactive online bookstore website.
+To complete
 
 ### Project Structure
 
-online-bookstore/ 
+python_programming_project/ 
 ├── images/ 
 │ ├── background.jpg
-│ ├── book1.jpg
-│ ├── book2.jpg
-│ ├── book3.jpg
-│ ├── book4.jpg
-│ ├── book5.jpg
+│ ├── file.doc
 │ └── logo.png
 │ 
-├── index.html
-│
-├── style.css
-│
-├── script.js
+├── database.sql
+││
+├── main.py
 │
 └── README.md
 
 ## Launch
 
 How to launch our Project : 
-1. Download the project folder
-2. Open `index.html` in a web browser
-3. Explore the website
+
 
 ## Usage
 
