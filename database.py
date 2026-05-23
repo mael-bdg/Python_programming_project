@@ -39,6 +39,21 @@ def insert_movie(title, genre, synopsis):
     conn.close()
 
 
+# RETRIEVE all genre (needed for the genre selected button)
+def get_all_genres():
+    conn = sqlite3.connect("movies.db")
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT DISTINCT genre FROM movies")
+    results = cursor.fetchall()
+
+    conn.close()
+
+    # Convert [('Action',), ('Drama',)] → ['Action', 'Drama']
+    genres = [row[0] for row in results]
+    return genres
+
+
 # RETRIEVE all movies
 def get_all_movies():
     conn = connect_db()
