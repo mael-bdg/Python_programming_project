@@ -61,6 +61,20 @@ class MovieApp:
         )
         self.genre_dropdown.grid(row=0, column=1, padx=5)
 
+        # SEARCH BAR
+        search_label = tk.Label(top_frame, text="Search Title:", bg="#8FA1AF")
+        search_label.grid(row=1, column=0, padx=5, pady=10)
+        
+        self.search_var = tk.StringVar()
+        search_entry = tk.Entry(top_frame, textvariable=self.search_var)
+        search_entry.grid(row=1, column=1, padx=5)
+        search_btn = tk.Button(
+            top_frame,
+            text="Search",
+            command=self.search_movie
+        )
+        search_btn.grid(row=1, column=2, padx=10)
+
         # -------------------------------
         # BUTTON (same row)
         # -------------------------------
@@ -68,15 +82,46 @@ class MovieApp:
         recommend_btn = tk.Button(
             top_frame,
             text="Recommend Movies",
-            command=self.show_movies
+            command=self.show_movies,
+            bg="#4A90E2",
+            fg="white",
+            font=("Arial", 10, "bold")
         )
         recommend_btn.grid(row=0, column=2, padx=10)
+
+        random_btn = tk.Button(
+         top_frame,
+         text="🎲 Surprise Me",
+         command=self.random_movie,
+         bg="#4A90E2",
+         fg="white",
+         font=("Arial", 10, "bold")
+        )
+
+        random_btn.grid(row=2, column=1, pady=10)
 
         # -------------------------------
         # RESULT AREA
         # -------------------------------
-        self.result_box = tk.Text(root, height=25, width=80)
-        self.result_box.pack(pady=15)
+        frame = tk.Frame(root)
+        frame.pack(pady=15)
+
+        scrollbar = tk.Scrollbar(frame)
+
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.result_box = tk.Text(
+         frame,
+         height=25,
+         width=80,
+         font=("Arial", 11),
+         bg="#F5F5F5",
+         fg="#222222"
+        )
+
+        self.result_box.pack(side=tk.LEFT)
+
+        scrollbar.config(command=self.result_box.yview)
 
     # -------------------------------
     # SHOW MOVIES
@@ -93,13 +138,60 @@ class MovieApp:
             return
 
         # Get movies
-        movies = database.get_movies_by_genre(genre)
+        try:
+         movies = database.get_movies_by_genre(genre)
+
+        except Exception as e:
+         self.result_box.insert(tk.END, f"Database Error: {e}")
+         return
 
         # Display results
         self.result_box.insert(tk.END, f"Movies for {genre}:\n\n")
         for title, synopsis in movies:
             self.result_box.insert(tk.END, f"- {title}\n")
             self.result_box.insert(tk.END, f"  {synopsis}\n\n")
+    
+    def search_movie(self):
+        title = self.search_var.get()
+        
+        self.result_box.delete("1.0", tk.END)
+        
+        if title == "":
+            self.result_box.insert(tk.END, "Please enter a movie title.")
+        return
+
+        try:
+         movies = database.search_movie_by_title(title)
+
+         if not movies:
+            self.result_box.insert(
+                tk.END,
+                "No movie found."
+            )
+            return
+
+         for title, synopsis in movies:
+            self.result_box.insert(tk.END, f"{title}\n")
+            self.result_box.insert(tk.END, f"{synopsis}\n\n")
+
+        except Exception as e:
+         self.result_box.insert(tk.END, f"Error: {e}")
+    
+    def random_movie(self):
+    
+     self.result_box.delete("1.0", tk.END)
+
+     try:
+        movie = database.get_random_movie()
+
+        if movie:
+            title, synopsis = movie
+
+            self.result_box.insert(tk.END, f"{title}\n\n")
+            self.result_box.insert(tk.END, f"{synopsis}")
+
+     except Exception as e:
+        self.result_box.insert(tk.END, f"Error: {e}")
 
 
 # -------------------------------

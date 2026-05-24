@@ -1,4 +1,5 @@
 import sqlite3
+import random
 
 DB_NAME = "movies.db"
 
@@ -112,3 +113,41 @@ def delete_movie(movie_id):
 
     conn.commit()
     conn.close()
+
+# SEARCH BY TITLE
+def search_movie_by_title(title):
+    conn = sqlite3.connect("movies.db")
+    cursor = conn.cursor()
+
+    query = """
+    SELECT title, synopsis
+    FROM movies
+    WHERE title LIKE ?
+    """
+
+    cursor.execute(query, ('%' + title + '%',))
+
+    results = cursor.fetchall()
+
+    conn.close()
+
+    return results
+
+#Random movie recommendation
+def get_random_movie():
+    
+    conn = sqlite3.connect("movies.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT title, synopsis
+    FROM movies
+    ORDER BY RANDOM()
+    LIMIT 1
+    """)
+
+    movie = cursor.fetchone()
+
+    conn.close()
+
+    return movie
