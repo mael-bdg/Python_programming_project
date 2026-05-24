@@ -66,8 +66,10 @@ class MovieApp:
         search_label.grid(row=1, column=0, padx=5, pady=10)
         
         self.search_var = tk.StringVar()
+
         search_entry = tk.Entry(top_frame, textvariable=self.search_var)
         search_entry.grid(row=1, column=1, padx=5)
+
         search_btn = tk.Button(
             top_frame,
             text="Search",
@@ -158,7 +160,7 @@ class MovieApp:
         
         if title == "":
             self.result_box.insert(tk.END, "Please enter a movie title.")
-        return
+            return
 
         try:
          movies = database.search_movie_by_title(title)
