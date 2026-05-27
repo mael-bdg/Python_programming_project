@@ -55,21 +55,21 @@ In charge : **Jade** _a.k.a_ [@dalgi](https://github.com/NightHowl1234)
 ### Task 2: Recommendation System & Testing
 In charge : **Maëlys** _a.k.a_ [@grapefruit](https://github.com/mael-bdg)
 
--> Status : ![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
+-> Status : ![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
 
 -> Notes : 
 
 ### Task 3: Graphical User Interface (GUI)
 In charge : **Pauline** _a.k.a_ [@popo](https://github.com/PaulineSavate)
 
--> Status :![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
+-> Status :![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
 
 -> Notes :
 
 ### Task 4: CRUD and SQL Queries
 In charge : **Evie** _a.k.a_ [@cherry](https://gitlab.esiea.fr/galli)
 
--> Status : ![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
+-> Status : ![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
 
 -> Notes : Create link between files, add queries according to CRUD. Improve code writing 
 
