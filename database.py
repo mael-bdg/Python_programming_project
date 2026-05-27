@@ -18,7 +18,9 @@ def create_table():
             movie_id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             genre TEXT NOT NULL,
-            synopsis TEXT NOT NULL
+            synopsis TEXT NOT NULL,
+            director TEXT,
+            comment TEXT
         )
     """)
 
@@ -27,14 +29,14 @@ def create_table():
 
 
 # INSERT
-def insert_movie(title, genre, synopsis):
+def insert_movie(title, genre, synopsis, director, comment):
     conn = connect_db()
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO movies (title, genre, synopsis)
-        VALUES (?, ?, ?)
-    """, (title, genre, synopsis))
+        INSERT INTO movies (title, genre, synopsis, director, comment)
+        VALUES (?, ?, ?, ?, ?)
+    """, (title, genre, synopsis, director, comment))
 
     conn.commit()
     conn.close()
@@ -61,7 +63,7 @@ def get_all_movies():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT movie_id, title, genre, synopsis
+        SELECT movie_id, title, genre, synopsis, diretor, comment
         FROM movies
     """)
 
@@ -76,7 +78,7 @@ def get_movies_by_genre(genre):
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT title, synopsis
+        SELECT title, synopsis, director, comment
         FROM movies
         WHERE genre = ?
     """, (genre,))
@@ -151,3 +153,20 @@ def get_random_movie():
     conn.close()
 
     return movie
+
+def pimper_ma_base():
+    conn = connect_db()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("ALTER TABLE movies ADD COLUMN director TEXT;")
+        cursor.execute("ALTER TABLE movies ADD COLUMN comment TEXT;")
+        conn.commit()
+        print("Colonnes ajoutées avec succès !")
+    except sqlite3.OperationalError:
+        print("Les colonnes existent déjà ou une erreur est survenue.")
+    finally:
+        conn.close()
+
+# On l'exécute tout de suite
+if __name__ == "__main__":
+    pimper_ma_base()
