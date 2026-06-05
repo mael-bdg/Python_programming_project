@@ -63,7 +63,7 @@ def get_all_movies():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT movie_id, title, genre, synopsis, diretor, comment
+        SELECT movie_id, title, genre, synopsis, director, comment
         FROM movies
     """)
 
