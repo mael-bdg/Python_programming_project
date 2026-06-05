@@ -34,21 +34,21 @@ class MovieApp:
         self.root.title("Movie Recommendation System")
         self.root.geometry("900x700")
         
-        self.bg_dark = "#141A29"       # Fond principal (Bleu très sombre/Noir)
-        self.bg_card = "#1F293D"       # Fond des panneaux/cartes
-        self.fg_light = "#FFFFFF"      # Texte principal
-        self.fg_muted = "#9CA3AF"      # Texte secondaire (Gris)
-        self.accent_color = "#00D2C4"  # Couleur d'accentuation (Cyan néon)
-        self.btn_bg = "#2563EB"        # Bleu intense pour les boutons d'action
+        self.bg_dark = "#141A29"       # background principal (Dark Navy)
+        self.bg_card = "#1F293D"       # background of cards and panels (Darker Slate)
+        self.fg_light = "#FFFFFF"      # Primary text color (White)
+        self.fg_muted = "#9CA3AF"      # secondary text color (Muted Gray)
+        self.accent_color = "#00D2C4"  # Accent color for highlights and buttons (Bright Cyan)
+        self.btn_bg = "#2563EB"        # Button background (Vibrant Blue)
 
         self.root.configure(bg=self.bg_dark)
 
-        # Configuration des styles TTK pour les Combobox et Scrollbars
+        # Configuration of ttk styles for Combobox
         self.style = ttk.Style()
         self.style.theme_use("clam")
         self.style.configure("TCombobox", fieldbackground=self.bg_card, background=self.bg_card, foreground=self.fg_light)
         
-        # --- EN-TÊTE (HEADER) ---
+        # --- HEADER ---
         header_frame = tk.Frame(root, bg=self.bg_dark)
         header_frame.pack(fill=tk.X, padx=30, pady=20)
 
@@ -88,14 +88,14 @@ class MovieApp:
         )
         add_movie_btn.pack(side=tk.RIGHT, pady=5)
 
-        # --- PANNEAU DE CONTRÔLE (SIDEBAR / TOP BAR MIX) ---
+        # --- SIDEBAR / TOP BAR MIX ---
         control_panel = tk.Frame(root, bg=self.bg_card, bd=0, highlightthickness=0)
         control_panel.pack(fill=tk.X, padx=30, pady=10, ipady=15)
 
-        # Grille interne pour aligner proprement les éléments
+        # Internal grid configuration for better spacing
         control_panel.columnconfigure((0, 1, 2, 3), weight=1)
 
-        # Section Recherche par titre
+        # Section Search by Title
         search_frame = tk.Frame(control_panel, bg=self.bg_card)
         search_frame.grid(row=0, column=0, columnspan=2, padx=20, sticky="ew")
         
@@ -132,7 +132,7 @@ class MovieApp:
         )
         search_btn.pack(side=tk.LEFT, padx=(5, 0), ipady=4)
 
-        # Section Filtrer par Genre
+        # Section Filter by Genre
         genre_frame = tk.Frame(control_panel, bg=self.bg_card)
         genre_frame.grid(row=0, column=2, padx=20, sticky="ew")
 
@@ -168,7 +168,7 @@ class MovieApp:
         )
         recommend_btn.grid(row=0, column=3, padx=20, pady=(18, 0), sticky="ew", ipady=6)
 
-        # Bouton Surprise au milieu en bas du panneau
+        # Surprise Me Button (Random Movie)
         random_btn = tk.Button(
             root,
             text="🎲 Surprise Me !",
@@ -183,14 +183,14 @@ class MovieApp:
         )
         random_btn.pack(pady=10, ipady=6, ipadx=20)
 
-        # --- ZONE DE RÉSULTATS (DISPLAY) ---
+        # --- DISPLAY ---
         results_frame = tk.Frame(root, bg=self.bg_dark)
         results_frame.pack(fill=tk.BOTH, expand=True, padx=30, pady=10)
 
         scrollbar = ttk.Scrollbar(results_frame)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-        # Utilisation d'un widget Text stylisé
+        # Use a Text widget for better formatting capabilities (titles, synopses, comments)
         self.result_box = tk.Text(
             results_frame,
             height=20,
@@ -208,14 +208,14 @@ class MovieApp:
         self.result_box.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.config(command=self.result_box.yview)
 
-        # Configuration des "tags" pour formater dynamiquement le texte (Titres en surbrillance, etc.)
+        # Configuration of text tags for styling different parts of the movie display
         self.result_box.tag_configure("title_style", font=("Helvetica", 14, "bold"), foreground=self.accent_color)
         self.result_box.tag_configure("synopsis_style", font=("Helvetica", 10), foreground=self.fg_muted)
         self.result_box.tag_configure("info_style", font=("Helvetica", 11, "italic"), foreground=self.fg_muted)
 
 
     # -------------------------------
-    # LOGIQUE D'AFFICHAGE AMÉLIORÉE
+    # FUNCTIONS FOR DISPLAY AND INTERACTIONS
     # -------------------------------
     def format_movie_display(self, movies, header_text=""):
         self.result_box.delete("1.0", tk.END)
@@ -237,7 +237,7 @@ class MovieApp:
                 title, synopsis = movie[0], movie[1]
                 director, comment = "Unknown", ""
 
-            # Affichage structuré
+            # structured display with styling
             title_line = f"🎬 {title.upper()}"
             if director:
                 title_line += f"  (Directed by: {director})"
@@ -287,26 +287,26 @@ class MovieApp:
 
     
     def open_add_movie_window(self):
-        # Création d'une fenêtre secondaire (Pop-up)
+        # Create a new Toplevel window for adding a movie
         add_win = tk.Toplevel(self.root)
         add_win.title("Add New Movie")
         add_win.geometry("450x550")
         add_win.configure(bg=self.bg_dark)
-        add_win.grab_set() # Bloque la fenêtre principale tant que celle-ci est ouverte
+        add_win.grab_set() # Block interaction with the main window until this one is closed
 
-        # Style des labels du formulaire
+        # Style dictionaries for consistent styling
         lbl_style = {"bg": self.bg_dark, "fg": self.fg_light, "font": ("Helvetica", 10, "bold"), "anchor": "w"}
         entry_style = {"bg": self.bg_card, "fg": self.fg_light, "bd": 0, "highlightthickness": 1, "highlightbackground": "#374151", "highlightcolor": self.accent_color, "insertbackground": self.fg_light, "font": ("Helvetica", 11)}
 
-        # Formulaire
+        # Header
         tk.Label(add_win, text="🎬 ADD A NEW MOVIE", font=("Helvetica", 14, "bold"), bg=self.bg_dark, fg=self.accent_color).pack(pady=15)
 
-        # Titre
+        # Title
         tk.Label(add_win, text="Title *", **lbl_style).pack(fill=tk.X, padx=30, pady=(5, 2))
         title_entry = tk.Entry(add_win, **entry_style)
         title_entry.pack(fill=tk.X, padx=30, ipady=4)
 
-        # Réalisateur
+        # Director
         tk.Label(add_win, text="Director", **lbl_style).pack(fill=tk.X, padx=30, pady=(10, 2))
         director_entry = tk.Entry(add_win, **entry_style)
         director_entry.pack(fill=tk.X, padx=30, ipady=4)
@@ -321,12 +321,12 @@ class MovieApp:
         synopsis_text = tk.Text(add_win, height=4, bg=self.bg_card, fg=self.fg_light, bd=0, highlightthickness=1, highlightbackground="#374151", highlightcolor=self.accent_color, insertbackground=self.fg_light, font=("Helvetica", 10), wrap=tk.WORD)
         synopsis_text.pack(fill=tk.X, padx=30)
 
-        # Commentaire
+        # Comment
         tk.Label(add_win, text="Your Comment / Review", **lbl_style).pack(fill=tk.X, padx=30, pady=(10, 2))
         comment_text = tk.Text(add_win, height=3, bg=self.bg_card, fg=self.fg_light, bd=0, highlightthickness=1, highlightbackground="#374151", highlightcolor=self.accent_color, insertbackground=self.fg_light, font=("Helvetica", 10), wrap=tk.WORD)
         comment_text.pack(fill=tk.X, padx=30)
 
-        # Fonction interne de sauvegarde
+        # Internal function to handle saving the movie to the database
         def save_movie():
             t = title_entry.get().strip()
             g = genre_entry.get().strip()
@@ -340,17 +340,17 @@ class MovieApp:
 
             try:
                 database.insert_movie(t, g, s, d, c)
-                # Rafraîchir les genres de la liste déroulante principale
+                # Refresh the genres in the main dropdown
                 self.genre_dropdown['values'] = database.get_all_genres()
-                add_win.destroy() # Fermer la fenêtre
-                
-                # Petit message de succès temporaire dans la console ou box
+                add_win.destroy() # Close the window
+
+                # Temporary success message in the console or box
                 self.result_box.delete("1.0", tk.END)
                 self.result_box.insert(tk.END, f"✅ '{t}' successfully added to the database!", "info_style")
             except Exception as e:
                 print(f"Error saving movie: {e}")
 
-        # Bouton Sauvegarder
+        # Save Button
         tk.Button(add_win, text="Save Movie", command=save_movie, bg=self.btn_bg, fg=self.fg_light, font=("Helvetica", 11, "bold"), bd=0, cursor="hand2").pack(fill=tk.X, padx=30, pady=25, ipady=6)
 
 

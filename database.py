@@ -167,6 +167,6 @@ def pimper_ma_base():
     finally:
         conn.close()
 
-# On l'exécute tout de suite
+# We can run this function once to add the new columns to the existing database, then comment it out to avoid errors on subsequent runs. It will not affect the existing data, just add new empty columns for director and comment.
 if __name__ == "__main__":
     pimper_ma_base()
