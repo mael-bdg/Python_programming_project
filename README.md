@@ -107,7 +107,7 @@ python_programming_project/
 │ ├── file.doc
 │ └── logo.png
 │ 
-├── brouillon.sql
+├── Draft.sql
 │ 
 ├── database.py
 │
@@ -128,7 +128,7 @@ python main.py
 When the application is launched for the first time:
 
 - the SQLite database is automatically created
-- movie data is loaded from `brouillon.sql`
+- movie data is loaded from `Draft.sql`
 - the graphical interface opens automatically
 
 
@@ -189,5 +189,5 @@ Users can select different genres to receive other movie recommendations.
 
 ## Project status
 
-![IN PROGRESS](https://img.shields.io/badge/IN%20PROGRESS-%F0%9F%92%BB-e6a1ff?labelColor=d663ff&style=for-the-badge)
-  =>  **In Progress ! ^^**
+![Done](https://img.shields.io/badge/Done-%E2%9C%94-7ed9c0?labelColor=40b897&style=for-the-badge)
+  =>  **Done ! ^^**
