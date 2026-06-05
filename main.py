@@ -57,7 +57,7 @@ class MovieApp:
         # -------------------------------
         title = tk.Label(
             header_frame, 
-            text="🎬 CineMatch", 
+            text="🎬 CineReco", 
             font=("Helvetica", 24, "bold"), 
             bg=self.bg_dark, 
             fg=self.accent_color
