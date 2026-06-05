@@ -17,7 +17,7 @@ def init_db():
     cursor = conn.cursor()
 
     if not db_exists:
-        with open("brouillon.sql", "r") as file:
+        with open("Draft.sql", "r") as file:
             cursor.executescript(file.read())
         print("Database created!")
 
