@@ -95,9 +95,9 @@ def update_movie(movie_id, title, genre, synopsis):
 
     cursor.execute("""
         UPDATE movies
-        SET title = ?, genre = ?, synopsis = ?
+        SET title = ?, genre = ?, synopsis = ?, director = ?, comment = ?
         WHERE movie_id = ?
-    """, (title, genre, synopsis, movie_id))
+    """, (title, genre, synopsis, director, comment, movie_id))
 
     conn.commit()
     conn.close()
@@ -122,7 +122,7 @@ def search_movie_by_title(title):
     cursor = conn.cursor()
 
     query = """
-    SELECT title, synopsis
+    SELECT title, synopsis, director, comment
     FROM movies
     WHERE title LIKE ?
     """
@@ -142,7 +142,7 @@ def get_random_movie():
     cursor = conn.cursor()
 
     cursor.execute("""
-    SELECT title, synopsis
+    SELECT title, synopsis, director, comment
     FROM movies
     ORDER BY RANDOM()
     LIMIT 1
